@@ -62,9 +62,12 @@ function RecentSessions({ sessions, isLoading }) {
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
                       <span>
-                        {formatDistanceToNow(new Date(session.createdAt), {
-                          addSuffix: true,
-                        })}
+                        {/* Check if createdAt exists and is valid before formatting */}
+                        {session.createdAt && !isNaN(new Date(session.createdAt))
+                          ? formatDistanceToNow(new Date(session.createdAt), {
+                              addSuffix: true,
+                            })
+                          : "Unknown time"}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -79,7 +82,10 @@ function RecentSessions({ sessions, isLoading }) {
                   <div className="flex items-center justify-between pt-3 border-t border-base-300">
                     <span className="text-xs font-semibold opacity-80 uppercase">Completed</span>
                     <span className="text-xs opacity-40">
-                      {new Date(session.updatedAt).toLocaleDateString()}
+                      {/* Check if updatedAt exists before formatting to prevent "Invalid Date" text */}
+                      {session.updatedAt && !isNaN(new Date(session.updatedAt))
+                        ? new Date(session.updatedAt).toLocaleDateString()
+                        : "Unknown date"}
                     </span>
                   </div>
                 </div>
