@@ -48,7 +48,7 @@ export async function getActiveSessions(_, res) {
             .sort({ createdAt: -1 })
             .limit(20);
 
-        rest.status(200).json({ sessions });
+        res.status(200).json({ sessions });
     } catch (error) {
         console.log("Error in getActiveSessions controller", error.message);
         res.status(500).json({ message: "Internal server error" });
@@ -111,7 +111,7 @@ export async function joinSession(req, res) {
         if (session.participant) return res.status(409).json({ message: "Session is already full" });
 
         session.participant = userId;
-        await Session.save();
+        await session.save();
 
         const channel = chatClient.channel("messaging", session.callId);
         await channel.addMembers([clerkId]);
