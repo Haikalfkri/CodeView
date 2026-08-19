@@ -8,6 +8,11 @@ const LANGUAGE_VERSIONS = {
   javascript: { language: "javascript", version: "*" },
   python: { language: "python", version: "*" },
   java: { language: "java", version: "*" },
+  dart: { language: "dart", version: "*" },
+  php: { language: "php", version: "*" },
+  rust: { language: "rust", version: "*" },
+  ruby: { language: "ruby", version: "*" },
+  typescript: { language: "typescript", version: "*" },
 };
 
 /**
